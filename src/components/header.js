@@ -18,8 +18,14 @@ const Header = () => {
 
   const menus = wpdata.wordpressWpApiMenusMenusItems.items
 
-  function openMenu() {
-    console.log("asd")
+  const myRef = React.createRef()
+
+  function toggleMenu() {
+    if (myRef.current.style.display === "none") {
+      myRef.current.style.display = "block"
+    } else {
+      myRef.current.style.display = "none"
+    }
   }
 
   return (
@@ -35,7 +41,7 @@ const Header = () => {
             </a>
           </div>
 
-          <div className="head-menu">
+          <div ref={myRef} className="head-menu">
             <ul>
               {menus.map(item => (
                 <li key={item.wordpress_id}>
@@ -45,7 +51,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="menu-trigger" onClick={openMenu}>
+          <div className="menu-trigger" onClick={toggleMenu}>
             <span />
             <span />
             <span />
